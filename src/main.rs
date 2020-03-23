@@ -11,6 +11,7 @@ fn main() {
         height: 40,
 
         max_iterations: 50,
+        escape_radius: 8.0,
     };
 
     run(config);

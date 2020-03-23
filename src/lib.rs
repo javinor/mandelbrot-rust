@@ -8,6 +8,7 @@ pub struct Config {
   pub height: u32,
 
   pub max_iterations: u32,
+  pub escape_radius: f64,
 }
 
 pub fn run(config: Config) {
@@ -29,9 +30,10 @@ fn calc_exit_iteration(config: &Config, c: (f64, f64)) -> Option<u32> {
   let mut zy = 0.0;
   let mut next_x: f64;
   let mut next_y: f64;
+  let escape_distance = config.escape_radius * config.escape_radius;
 
   for i in 0..config.max_iterations {
-    if zx * zx + zy * zy > 64.0 {
+    if zx * zx + zy * zy > escape_distance {
       // smoothening the image:
       // i - Math.log(zx*zx+zy*zy)/Math.log(64);
       return Some(i);
